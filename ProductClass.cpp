@@ -13,6 +13,7 @@ class Product
     int quantity;
 public:
     Product();
+    ~Product();
     Product(string n, int q);
     int getID();
     void setName(string n);
@@ -29,6 +30,11 @@ Product::Product(string n, int q)
     id = setID();
     name = n;
     quantity = q;
+}
+
+Product::~Product()
+{
+    cout << "Deleted object" << endl;
 }
 
 int Product::getID(){ return id; }
@@ -67,6 +73,8 @@ int main()
     Product *p = new Product(name, quantity);
     
     p->display();
+    
+    delete p;
     
     
     return 0;
