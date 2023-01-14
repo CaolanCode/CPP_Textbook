@@ -2,34 +2,39 @@
     Product class
  */
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 int setID();
 
 class Product
 {
-    int id;
-    string name;
+    const int id;
+    char *name;
     int quantity;
 public:
-    Product();
+    Product(const Product &p);
     ~Product();
-    Product(string n, int q);
+    Product(int id, char *n, int q);
     int getID();
-    void setName(string n);
+    void setName(char *n);
     string getName();
     void setQuantity(int q);
     int getQuantity();
     void display();
 };
 
-Product::Product(){ id = setID(); };
-
-Product::Product(string n, int q)
+Product::Product(int id, char *n, int q): id(id), quantity(q)
 {
-    id = setID();
-    name = n;
-    quantity = q;
+    name = new char(strlen(n) + 1);
+    strcpy(name, n);
+}
+
+Product::Product(const Product &p): id(p.id)
+{
+    this->name = new char(strlen(p.name) + 1);
+    strcpy(this->name, p.name);
+    quantity = p.quantity;
 }
 
 Product::~Product()
@@ -39,7 +44,7 @@ Product::~Product()
 
 int Product::getID(){ return id; }
 
-void Product::setName(string n) { name = n;  }
+void Product::setName(char *n) { name = n;  }
 
 string Product::getName(){ return name; }
 
@@ -54,28 +59,20 @@ void Product::display()
     cout << "Quantity: " << getQuantity() << endl;
 }
 
-int setID()
-{
-    static int id = 0;
-    
-    return ++id;
-}
-
 int main()
 {
-    string name;
-    int quantity;
-    cout << "Enter the products name: ";
-    getline(cin, name);
-    cout << "Enter the quantity of the product: ";
-    cin >> quantity;
+    int id = 100;
+    char name[] = "abcd";
+    int quantity = 20;
+    Product p1(id, name, quantity);
+    id++;
+    p1.display();
     
-    Product *p = new Product(name, quantity);
-    
-    p->display();
-    
-    delete p;
-    
+    name[3] = 'f';
+    quantity = 30;
+    Product p2(id, name, quantity);
+    p2.display();
+    p1.display();
     
     return 0;
 }

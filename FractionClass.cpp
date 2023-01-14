@@ -13,7 +13,7 @@ class Fraction
 public:
     Fraction(int numerator, int denominator);
     void print();
-    void add(Fraction const &f); 
+    void add(Fraction const &f);
     void simplify();
 };
 
