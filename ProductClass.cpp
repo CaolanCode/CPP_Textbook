@@ -22,12 +22,14 @@ public:
     void setQuantity(int q);
     const int getQuantity();
     void display();
+    static int totalProducts;
 };
 
 Product::Product(int id, char *n, int q): id(id), quantity(q)
 {
     name = new char(strlen(n) + 1);
     strcpy(name, n);
+    totalProducts++;
 }
 
 Product::Product(const Product &p): id(p.id)
@@ -59,6 +61,8 @@ void Product::display()
     cout << "Quantity: " << getQuantity() << endl;
 }
 
+int Product::totalProducts = 0;
+
 int main()
 {
     int id = 100;
@@ -67,12 +71,14 @@ int main()
     Product p1(id, name, quantity);
     id++;
     p1.display();
+    cout << Product::totalProducts << endl;
     
     name[3] = 'f';
     quantity = 30;
     Product p2(id, name, quantity);
     p2.display();
     p1.display();
+    cout << Product::totalProducts << endl;
     
     return 0;
 }
