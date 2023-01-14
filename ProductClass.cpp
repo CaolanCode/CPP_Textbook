@@ -16,11 +16,11 @@ public:
     Product(const Product &p);
     ~Product();
     Product(int id, char *n, int q);
-    int getID();
+    const int getID();
     void setName(char *n);
-    string getName();
+    const char* getName();
     void setQuantity(int q);
-    int getQuantity();
+    const int getQuantity();
     void display();
 };
 
@@ -42,15 +42,15 @@ Product::~Product()
     cout << "Deleted object" << endl;
 }
 
-int Product::getID(){ return id; }
+const int Product::getID(){ return id; }
 
 void Product::setName(char *n) { name = n;  }
 
-string Product::getName(){ return name; }
+const char* Product::getName(){ return name; }
 
 void Product::setQuantity(int q){ quantity = q; }
 
-int Product::getQuantity(){ return quantity; }
+const int Product::getQuantity(){ return quantity; }
 
 void Product::display()
 {
