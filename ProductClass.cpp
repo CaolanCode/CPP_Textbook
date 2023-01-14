@@ -5,8 +5,6 @@
 #include <cstring>
 using namespace std;
 
-int setID();
-
 class Product
 {
     const int id;
@@ -62,7 +60,6 @@ void Product::display()
     cout << "Quantity: " << getQuantity() << endl;
 }
 
-
 int Product::totalProducts = 0;
 
 int main()
@@ -79,6 +76,7 @@ int main()
     quantity = 30;
     Product p2(id, name, quantity);
     p2.display();
+    id++;
     p1.display();
     cout << Product::getTotalProduct() << endl;
     
