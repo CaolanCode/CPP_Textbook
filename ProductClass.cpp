@@ -12,6 +12,7 @@ class Product
     const int id;
     char *name;
     int quantity;
+    static int totalProducts;
 public:
     Product(const Product &p);
     ~Product();
@@ -22,7 +23,7 @@ public:
     void setQuantity(int q);
     const int getQuantity();
     void display();
-    static int totalProducts;
+    static int getTotalProduct() { return totalProducts; }
 };
 
 Product::Product(int id, char *n, int q): id(id), quantity(q)
@@ -61,6 +62,7 @@ void Product::display()
     cout << "Quantity: " << getQuantity() << endl;
 }
 
+
 int Product::totalProducts = 0;
 
 int main()
@@ -71,14 +73,14 @@ int main()
     Product p1(id, name, quantity);
     id++;
     p1.display();
-    cout << Product::totalProducts << endl;
+    cout << Product::getTotalProduct() << endl;
     
     name[3] = 'f';
     quantity = 30;
     Product p2(id, name, quantity);
     p2.display();
     p1.display();
-    cout << Product::totalProducts << endl;
+    cout << Product::getTotalProduct() << endl;
     
     return 0;
 }
